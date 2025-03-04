@@ -25,3 +25,4 @@ package yang di gunakan :
 * npm i react-router
 * npm i socket.io
 * npm i --save sweetalert
+* npm i toastify-js
