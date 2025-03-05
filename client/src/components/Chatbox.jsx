@@ -32,11 +32,16 @@ export default function Chatbox() {
       });
     });
 
-    return () => {
-      socket.off('message:update');
-      socket.disconnect();
-    };
-  }, []);
+        return () => {
+            socket.off("message:update")
+            socket.disconnect()
+        }
+
+    }, [])
+
+    useEffect(()=>{
+        // console.log(messages)
+    })
 
   return (
     <>

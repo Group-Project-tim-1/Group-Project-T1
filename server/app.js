@@ -1,5 +1,4 @@
 const express = require('express');
-const { log } = require('node:console');
 const app = express();
 const PORT = 3000;
 const { createServer } = require('node:http');
@@ -25,7 +24,7 @@ io.on('connection', (socket) => {
         console.log(player,'kesini ga?');
 
         players.push({name: player.username})
-        io.emit('newPlayer', 'new player join')
+        socket.broadcast.emit('newPlayer', {opponent: player.username})
         // console.log(players, 'ada?')
         
         if (players.length === 2){
@@ -35,8 +34,12 @@ io.on('connection', (socket) => {
         }
     })
     
-    socket.on("playground", (msg) => {
-        console.log(msg);
+    socket.on("opponent:data", (data) => {
+        socket.broadcast.emit("opponents:update", {
+            from: socket.handshake.auth.username,
+            data
+        })
+
         
     })
 
@@ -45,7 +48,7 @@ io.on('connection', (socket) => {
             from: socket.handshake.auth.username,
             message
         })
-        console.log(message)
+        // console.log(message)
     })
 
 })

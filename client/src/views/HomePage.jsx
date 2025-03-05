@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router';
 import { socket } from '../socket/socket';
 
 export default function HomePage() {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [isReady, setIsReady] = useState(false);
-  const [players, setPlayers] = useState([]);
+    const navigate = useNavigate()
+    const [username, setUsername] = useState('')
+    const [isReady, setIsReady] = useState(false)
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,17 +19,15 @@ export default function HomePage() {
     socket.emit('player', { username: localStorage.username });
   }
 
-  useEffect(() => {
-    socket.on('play', (players) => {
-      setIsReady(true);
-      setPlayers(players);
-      navigate('/plays');
-    });
-  }, [isReady]);
+    useEffect(() => {
+        socket.on('play', (players) => {
+            setIsReady(true)
+            navigate('/plays')
+        })
+    }, [isReady])
 
-  useEffect(() => {
-    console.log(players);
-  });
+    
+
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">

@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router"
+import { socket } from "../socket/socket"
 
 export default function Navbar() {
   const navigate = useNavigate();
