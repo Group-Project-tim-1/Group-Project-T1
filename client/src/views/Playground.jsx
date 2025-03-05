@@ -19,9 +19,10 @@ export default function PlayGround() {
   
 
 
+
   useEffect(() => {
-    if(!localStorage.username){
-      navigate('/')
+    if (!localStorage.username) {
+      navigate('/');
     }
     
     socket.auth = {
@@ -29,6 +30,15 @@ export default function PlayGround() {
   }
     socket.connect()
 
+
+    socket.emit('playground', 'tes');
+
+    return () => {
+      socket.off('message:update');
+      socket.disconnect();
+    };
+  }, []);
+  
     socket.on('opponents:update', (data) => {
       setOpponent(data)
     })
@@ -71,8 +81,5 @@ export default function PlayGround() {
           </div>
             <Chatbox />
         </div>
-      </div>
-
-    </>
-  )
+  );
 }
