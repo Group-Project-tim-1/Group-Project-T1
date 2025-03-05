@@ -17,12 +17,14 @@ export default function Chatbox() {
     };
 
     function handleSubmit(e) {
+        console.log(messageSent,"<<<<");
+        
         e.preventDefault()
         socket.emit("message:new", messageSent)
     }
 
     useEffect(() => {
-        // console.log(messageSent)
+        console.log(messageSent)
         socket.auth = {
             username: localStorage.username
         }
@@ -31,22 +33,19 @@ export default function Chatbox() {
 
 
         socket.on("message:update", (newMessage) => {
-            // console.log(newMessage)
+            console.log(newMessage)
             setMessages(current => {
                 return [...current, newMessage]
             })
         })
 
-        return () => {
-            socket.off("message:update")
-            socket.disconnect()
-        }
+        
 
     }, [])
 
-    // useEffect(()=>{
-    //     console.log(messages)
-    // })
+    useEffect(()=>{
+        console.log(messages)
+    })
 
     return (
         <>
