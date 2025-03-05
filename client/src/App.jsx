@@ -1,19 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router";
-import PlayGround from "./views/Playground";
-import HomePage from "./views/HomePage";
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './views/Home';
+import PlayGround from './views/Playground';
+import BaseLayout from './views/BaseLayout';
 
 function App() {
   return (
-    <BrowserRouter>
-
-    <Routes>
-      <Route path='/' element={<HomePage/>}/>
-      <Route path="/plays" element={<PlayGround/>}/>
-    </Routes>
-    
-    </BrowserRouter>
-  )
+    <Router>
+      <Routes>
+        <Route element={<BaseLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/playground" element={<PlayGround />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

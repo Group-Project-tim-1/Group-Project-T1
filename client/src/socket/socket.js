@@ -1,5 +1,11 @@
 import { io } from "socket.io-client";
-export const socket = io("http://localhost:3000", {
-    autoConnect: false
+
+const SOCKET_URL = 'http://localhost:3000'; // Sesuaikan dengan URL server Anda
+
+export const socket = io(SOCKET_URL, {
+    autoConnect: false,
+    reconnection: true,
+    reconnectionAttempts: 5,
+    reconnectionDelay: 1000,
 });
 

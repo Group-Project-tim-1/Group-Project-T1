@@ -3,50 +3,34 @@
 .game-block {
     margin: 0;
     padding: 0;
-    width: 1.5em;
+    width: 5em;
     height: 1.5em;
-    border: 1px solid #ddd;
+    border: 1px solid #00ff9d;
   }
   .piece-i {
-    background-color: #ec858b;
+    background-color: #e8636a;
   }
   .piece-j {
-    background-color: #f1b598;
+    background-color: #e48656;
   }
   .piece-l {
-    background-color: #f8efae;
+    background-color: #ae9f2f;
   }
   .piece-o {
-    background-color: #b5a677;
+    background-color: #5aa42f;
   }
   .piece-s {
-    background-color: #816e56;
+    background-color: #2f549b;
   }
   .piece-t {
-    background-color: #b77c72;
+    background-color: #9c23bb;
   }
   .piece-z {
-    background-color: #e3be58;
+    background-color: #219618ae;
   }
   .piece-preview {
-    background-color: #eee;
+    background-color: #8f8f8fbd;
   }
 
-  .navbar {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-.navbar h1 {
-    color: white;
-    font-size: 24px;
-    margin: 0;
-}
-.navbar button {
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
+
+/* tailwind */
