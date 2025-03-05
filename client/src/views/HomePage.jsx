@@ -7,7 +7,6 @@ export default function HomePage() {
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [isReady, setIsReady] = useState(false)
-    const [players, setPlayers] = useState([])
 
 
     function handleSubmit(e) {
@@ -24,15 +23,11 @@ export default function HomePage() {
     useEffect(() => {
         socket.on('play', (players) => {
             setIsReady(true)
-            setPlayers(players)
             navigate('/plays')
         })
     }, [isReady])
 
-    useEffect(() => {
-        console.log(players);
-
-    })
+    
 
 
     return (
