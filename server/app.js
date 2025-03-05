@@ -15,12 +15,14 @@ const io = new Server(server, {
 
 
 io.on('connection', (socket) => {
+
     socket.on("message:new", (message) => {
         io.emit("message:update", {
-          from: socket.handshake.auth.username,
-          message
+            from: socket.handshake.auth.username,
+            message
         })
-      })
+    })
+    
 })
 
 

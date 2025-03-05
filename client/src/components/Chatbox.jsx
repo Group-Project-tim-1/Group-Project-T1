@@ -92,31 +92,8 @@ export default function Chatbox() {
                                 hello
                             </p>
                         </div>
-                        <div className="mb-2">
-                            <p className="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block">
-                                This is a response from the chatbot.
-                            </p>
-                        </div>
-                        <div className="mb-2 text-right">
-                            <p className="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block">
-                                this example of chat
-                            </p>
-                        </div>
-                        <div className="mb-2">
-                            <p className="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block">
-                                This is a response from the chatbot.
-                            </p>
-                        </div>
-                        <div className="mb-2 text-right">
-                            <p className="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block">
-                                design with tailwind
-                            </p>
-                        </div>
-                        <div className="mb-2">
-                            <p className="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block">
-                                This is a response from the chatbot.
-                            </p>
-                        </div>
+
+                       
                     </div>
 
                     <div className="p-4 border-t flex">

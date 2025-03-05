@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import PlayGround from "./views/Playground";
+import HomePage from "./views/HomePage";
 
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
     <BrowserRouter>
 
     <Routes>
-      {/* <Route path='/' element={<HomePage/>}/> */}
+      <Route path='/' element={<HomePage/>}/>
       <Route path="/plays" element={<PlayGround/>}/>
     </Routes>
     
