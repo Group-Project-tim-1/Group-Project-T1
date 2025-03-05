@@ -1,6 +1,12 @@
 import Tetris from "react-tetris";
+import { socket } from "../socket/socket";
+import { useEffect, useState } from "react";
 
-const User1 = () => (
+
+
+function User1  (){
+
+   return (
   <Tetris
     keyboardControls={{
       down: "MOVE_DOWN",
@@ -90,5 +96,6 @@ const User1 = () => (
     )}
   </Tetris>
 );
+} 
 
 export default User1;

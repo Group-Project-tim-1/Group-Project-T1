@@ -32,6 +32,44 @@ export default function Chatbox() {
       });
     });
 
+    const handleCloseChat = () => {
+        setIsChatOpen(false);
+    };
+
+    function handleSubmit(e) {
+        // console.log(messageSent,"<<<<");
+        
+        e.preventDefault()
+        socket.emit("message:new", messageSent)
+    }
+
+    useEffect(() => {
+        // console.log(messageSent)
+        socket.auth = {
+            username: localStorage.username
+        }
+
+        socket.connect()
+
+
+        socket.on("message:update", (newMessage) => {
+            // console.log(newMessage)
+            setMessages(current => {
+                return [...current, newMessage]
+            })
+        })
+
+        return () => {
+            socket.off("message:update")
+            socket.disconnect()
+        }
+
+    }, [])
+
+    useEffect(()=>{
+        // console.log(messages)
+    })
+
     return () => {
       socket.off('message:update');
       socket.disconnect();

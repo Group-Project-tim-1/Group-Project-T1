@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { socket } from '../socket/socket';
 
 export default function HomePage() {
+
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [isReady, setIsReady] = useState(false);
