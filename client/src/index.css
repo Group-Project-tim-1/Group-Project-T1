@@ -1,1 +1,52 @@
 @import "tailwindcss";
+
+.game-block {
+    margin: 0;
+    padding: 0;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid #ddd;
+  }
+  .piece-i {
+    background-color: #ec858b;
+  }
+  .piece-j {
+    background-color: #f1b598;
+  }
+  .piece-l {
+    background-color: #f8efae;
+  }
+  .piece-o {
+    background-color: #b5a677;
+  }
+  .piece-s {
+    background-color: #816e56;
+  }
+  .piece-t {
+    background-color: #b77c72;
+  }
+  .piece-z {
+    background-color: #e3be58;
+  }
+  .piece-preview {
+    background-color: #eee;
+  }
+
+  .navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar h1 {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+}
+.navbar button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
