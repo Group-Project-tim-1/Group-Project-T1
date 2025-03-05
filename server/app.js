@@ -1,5 +1,4 @@
 const express = require('express');
-const { Socket } = require('node:dgram');
 const app = express();
 const PORT = 3000;
 const { createServer } = require('node:http');
@@ -21,8 +20,9 @@ io.on('connection', (socket) => {
             from: socket.handshake.auth.username,
             message
         })
+        console.log(message)
     })
-    
+
 })
 
 
