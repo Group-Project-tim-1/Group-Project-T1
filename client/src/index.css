@@ -3,8 +3,8 @@
 .game-block {
     margin: 0;
     padding: 0;
-    width: 5em;
-    height: 1.5em;
+    width: 2em;
+    height: 2em;
     border: 1px solid #00ff9d;
   }
   .piece-i {

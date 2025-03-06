@@ -3,6 +3,7 @@ import Chatbox from '../components/Chatbox';
 import User1 from '../components/User1';
 import { useNavigate } from 'react-router-dom';
 import { socket } from '../socket/socket';
+import { GameProvider } from '../context/GameContext';
 
 export default function PlayGround() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function PlayGround() {
 
     // Configure socket
     socket.auth = { username };
-    
+
     // Connect to server
     socket.connect();
 
@@ -58,7 +59,9 @@ export default function PlayGround() {
   return (
     <div className="fixed container mx-auto p-4 h-screen bg-gray-900 text-gray-200 mt-16">
       <div className="bg-gray-800 rounded-lg shadow-md p-4">
-        <User1 opponent={opponent} enemy={enemy} />
+        <GameProvider> {/* Bungkus User1 dengan GameProvider */}
+          <User1 opponent={opponent} enemy={enemy} />
+        </GameProvider>
       </div>
       <Chatbox />
     </div>

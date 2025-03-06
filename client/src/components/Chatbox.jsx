@@ -17,36 +17,36 @@ export default function Chatbox() {
   // Setup socket connection - hanya sekali saat komponen mount
   useEffect(() => {
     // Listen for new messages
-    const handleNewMessage = (newMessage) => {
-      console.log('New message received:', newMessage);
+    
       // Hanya tambahkan pesan jika bukan dari pengirim yang sama
-      if (newMessage.from !== localStorage.getItem('username')) {
-        setMessages(prevMessages => [...prevMessages, newMessage]);
-      }
-    };
+      
 
-    socket.on('message:update', handleNewMessage);
+    socket.on('message:update', (newMessage) => {
+      setMessages(prev => {
+        return [...prev, newMessage]
+      })
+    });
 
     // Cleanup on unmount
     return () => {
-      socket.off('message:update', handleNewMessage);
+      socket.off('message:update');
     };
   }, []); // Empty dependency array
+
+  useEffect(()=>{
+    console.log(messages);
+    
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!messageSent.trim()) return;
 
-    const newMessage = {
-      from: localStorage.getItem('username'),
-      message: messageSent.trim()
-    };
-
     // Emit new message
-    socket.emit('message:new', messageSent.trim());
+    socket.emit('message:new', messageSent);
     
-    // Add message to local state
-    setMessages(prevMessages => [...prevMessages, newMessage]);
+    // // Add message to local state
+    // setMessages(prevMessages => [...prevMessages, newMessage]);
     
     // Clear input
     setMessageSent('');

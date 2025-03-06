@@ -7,47 +7,33 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173", // Sesuaikan dengan URL frontend Anda
-    methods: ["GET", "POST"],
-    credentials: true
-  }
+    cors: {
+        origin: "http://localhost:5173",
+        methods: ["GET", "POST"],
+        credentials: true
+    }
 });
 
-// Set max listeners
 io.setMaxListeners(15);
-
-// Menyimpan data pemain
 const players = new Map();
-
-// Initialize Gemini AI
 const genAI = new GoogleGenerativeAI('AIzaSyCr0_cURfF6vIsuHzKBROepn6B5cAoO8UQ');
-
-// Simpan status logout request untuk setiap room
 const logoutRequests = new Map();
 
 io.on('connection', (socket) => {
     console.log('New connection:', socket.id);
-    
-    // Buat default room untuk semua player
     const defaultRoom = 'tetris-game-room';
     socket.join(defaultRoom);
     console.log(`Socket ${socket.id} joined room: ${defaultRoom}`);
-    
-    // Log semua socket dalam room
-    const socketsInRoom = io.sockets.adapter.rooms.get(defaultRoom);
-    console.log(`Sockets in room ${defaultRoom}:`, 
-        socketsInRoom ? Array.from(socketsInRoom) : []);
 
-    // Set max listeners untuk socket individual
+    const socketsInRoom = io.sockets.adapter.rooms.get(defaultRoom);
+    console.log(`Sockets in room ${defaultRoom}:`, socketsInRoom ? Array.from(socketsInRoom) : []);
+
     socket.setMaxListeners(15);
-    
     const username = socket.handshake.auth.username;
-    
-    // Bersihkan semua listener yang ada sebelum menambahkan yang baru
+
     socket.removeAllListeners('game:update');
     socket.removeAllListeners('disconnect');
-    
+
     players.set(socket.id, {
         username: username,
         socketId: socket.id,
@@ -57,6 +43,15 @@ io.on('connection', (socket) => {
             lines: 0
         }
     });
+
+    // Cek jumlah player di room
+    const connectedClients = io.sockets.adapter.rooms.get(defaultRoom)?.size || 0;
+    console.log(`Connected clients in room: ${connectedClients}`);
+
+    // Jika ada 2 player, emit event 'players:ready'
+    if (connectedClients === 2) {
+        io.to(defaultRoom).emit('players:ready');
+    }
 
     const findOpponent = () => {
         for (const [id, player] of players.entries()) {
@@ -118,7 +113,7 @@ io.on('connection', (socket) => {
         const username = socket.handshake.auth.username;
         
         // Broadcast message ke semua client kecuali pengirim
-        socket.broadcast.emit('message:update', {
+        io.emit('message:update', {
             from: username,
             message: message
         });

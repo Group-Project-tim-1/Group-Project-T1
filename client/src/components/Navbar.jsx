@@ -98,6 +98,7 @@ export function Navbar() {
     localStorage.clear();
     socket.disconnect();
     navigate('/');
+    setWaitingConfirmation(false)
   }
 
   return (
